@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
-import { initializeApp } from "firebase/app";
-import {
-  collection,
-  getFirestore,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from "@material-ui/core";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
@@ -20,6 +12,7 @@ import {
 import Post from "./pages/Post";
 import ImageUpload from "./pages/ImageUpload";
 import "./App.css";
+import { app, auth, db } from "./pages/firebaseConfig/firebase";
 
 function getModalStyle() {
   const top = 50;
@@ -44,17 +37,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  const app = initializeApp({
-    apiKey: "AIzaSyAje7uu769QhvXaaEKvaS-W0GR9nXohsrM",
-    authDomain: "instagram-clone-react-pwa.firebaseapp.com",
-    projectId: "instagram-clone-react-pwa",
-    storageBucket: "instagram-clone-react-pwa.appspot.com",
-    messagingSenderId: "53880491842",
-    appId: "1:53880491842:web:c485290897ed4dc40e02db",
-    measurementId: "G-W0ZD5RNRC4",
-  });
-  const db = getFirestore(app);
-  const auth = getAuth();
   const classes = useStyles();
 
   const [modalStyle] = useState(getModalStyle);
@@ -69,7 +51,6 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         setUser(user);
         if (user.displayName) {
         } else {
