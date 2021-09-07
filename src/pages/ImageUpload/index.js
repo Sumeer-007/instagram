@@ -1,33 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
-import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
-import { initializeApp } from "firebase/app";
-import {
-  addDoc,
-  collection,
-  getFirestore,
-  serverTimestamp,
-} from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db, storage } from "../../firebaseConfig/firebase";
 import "./index.css";
 
 export const ImageUpload = ({ username }) => {
-  const app = initializeApp({
-    apiKey: "AIzaSyAje7uu769QhvXaaEKvaS-W0GR9nXohsrM",
-    authDomain: "instagram-clone-react-pwa.firebaseapp.com",
-    projectId: "instagram-clone-react-pwa",
-    storageBucket: "instagram-clone-react-pwa.appspot.com",
-    messagingSenderId: "53880491842",
-    appId: "1:53880491842:web:c485290897ed4dc40e02db",
-    measurementId: "G-W0ZD5RNRC4",
-  });
-  const db = getFirestore(app);
-  const storage = getStorage();
-
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
   const [caption, setCaption] = useState("");
