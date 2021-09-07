@@ -11,8 +11,8 @@ import {
 } from "firebase/auth";
 import Post from "./pages/Post";
 import ImageUpload from "./pages/ImageUpload";
-import "./App.css";
 import { auth, db } from "./firebaseConfig/firebase";
+import "./App.css";
 
 function getModalStyle() {
   const top = 50;
@@ -106,29 +106,34 @@ function App() {
       type: "text",
       value: username,
       onChange: (e) => setUsername(e.target.value),
+      key: 1,
     },
     {
       placeholder: "email",
       type: "text",
       value: email,
       onChange: (e) => setEmail(e.target.value),
+      key: 2,
     },
     {
       placeholder: "password",
       type: "password",
       value: password,
       onChange: (e) => setPassword(e.target.value),
+      key: 3,
     },
   ];
+
+  const signInInput = [signUpInput[1], signUpInput[2]];
 
   return (
     <div className="app">
       <Modal open={open} onClose={() => setOpen(false)} className="modal">
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
-            {signUpInput.map((input) => {
-              <Input {...input} />;
-            })}
+            {signUpInput.map((input) => (
+              <Input {...input} />
+            ))}
             <Button type="submit" onClick={signUp}>
               SignUp
             </Button>
@@ -138,25 +143,9 @@ function App() {
       <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
-            <center>
-              <img
-                className="app__headerImage"
-                src="https://www.instagaram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-                alt=""
-              />
-            </center>
-            <Input
-              placeholder="email"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              placeholder="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            {signInInput.map((input) => (
+              <Input {...input} />
+            ))}
             <Button type="submit" onClick={signIn}>
               Sign In
             </Button>
