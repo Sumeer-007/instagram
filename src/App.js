@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Post from "./Post";
 import { initializeApp } from "firebase/app";
 import {
   collection,
@@ -10,7 +9,6 @@ import {
 } from "firebase/firestore";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import "./App.css";
 import { Button, Input } from "@material-ui/core";
 import {
   createUserWithEmailAndPassword,
@@ -19,7 +17,9 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import ImageUpload from "./imageUpload";
+import Post from "./pages/Post";
+import ImageUpload from "./pages/ImageUpload";
+import "./App.css";
 
 function getModalStyle() {
   const top = 50;

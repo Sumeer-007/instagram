@@ -13,7 +13,7 @@ import {
   getFirestore,
   serverTimestamp,
 } from "firebase/firestore";
-import "./imageUpload.css";
+import "./index.css";
 
 export const ImageUpload = ({ username }) => {
   const app = initializeApp({

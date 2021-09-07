@@ -1,5 +1,5 @@
 import React from "react";
-import "./Post.css";
+import "./index.css";
 import Avatar from "@material-ui/core/Avatar";
 
 const Post = ({ username, caption, imageUrl }) => {
