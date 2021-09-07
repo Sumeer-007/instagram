@@ -12,7 +12,7 @@ import {
 import Post from "./pages/Post";
 import ImageUpload from "./pages/ImageUpload";
 import "./App.css";
-import { app, auth, db } from "./pages/firebaseConfig/firebase";
+import { auth, db } from "./firebaseConfig/firebase";
 
 function getModalStyle() {
   const top = 50;
