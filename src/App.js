@@ -100,36 +100,35 @@ function App() {
     setPassword("");
   };
 
+  const signUpInput = [
+    {
+      placeholder: "username",
+      type: "text",
+      value: username,
+      onChange: (e) => setUsername(e.target.value),
+    },
+    {
+      placeholder: "email",
+      type: "text",
+      value: email,
+      onChange: (e) => setEmail(e.target.value),
+    },
+    {
+      placeholder: "password",
+      type: "password",
+      value: password,
+      onChange: (e) => setPassword(e.target.value),
+    },
+  ];
+
   return (
     <div className="app">
       <Modal open={open} onClose={() => setOpen(false)} className="modal">
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
-            <center>
-              <img
-                className="app__headerImage"
-                src="https://www.instagaram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-                alt=""
-              />
-            </center>
-            <Input
-              placeholder="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              placeholder="email"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              placeholder="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            {signUpInput.map((input) => {
+              <Input {...input} />;
+            })}
             <Button type="submit" onClick={signUp}>
               SignUp
             </Button>
